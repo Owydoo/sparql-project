@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import { AlbumParams, ArtistParams, generateQuery } from './querygenerator/queryGenerator';
+import { fetchQuery } from './querygenerator/queryDispatcher';
 
 
 @Component({
@@ -13,33 +10,28 @@ import {
 })
 export class AppComponent {
   title = 'sparql-project';
-  sparkqlData: string = 'hello sparql';
-  constructor(private http: HttpClient) {}
+  
+  sparkqlData: string = '';
 
   doRequest = () => {
     console.log('hello');
 
-    let headers: any = new HttpHeaders({
-      'Content-type': 'application/x-www-form-urlencoded',
+    // Get data from form and get ArtistParams
+    const paramsQuery: ArtistParams = new ArtistParams("Steve Jobs")
+
+    // Generate query string from from params
+    const queryString = generateQuery(paramsQuery)
+  
+    // Fetch data from wikidata
+    fetchQuery(queryString).then((data:any) => {
+      this.manageData(data)
     });
-
-    let params = new HttpParams();
-    params = params.append(
-      'query',
-      'SELECT DISTINCT ?picture ?country WHERE { ?country dbo:capital ?capital. ?capital rdfs:label "Beijing" @en. ?capital foaf:depiction ?picture  } LIMIT 15'
-    );
-    params = params.append('format', 'json');
-
-    this.http
-      .get('http://dbpedia.org/sparql', { headers: headers, params: params })
-      .subscribe((data:any) => {
-        // console.log("data object : ",data.results.bindings);
-        // console.log("data object", data);
-        console.log("data test", data.results.bindings[0].picture.value);
-        this.sparkqlData = data.results.bindings[0].picture.value;
-        
-        // this.sparkqlData = data.results.toString(); // 3
-      });
-    console.log(this.sparkqlData); // 2
   };
+
+  // Display the data on the screen
+  manageData = (data: any) => {
+    console.log(data)
+    this.sparkqlData = data.results.bindings[0].person.value;
+  }
+
 }
