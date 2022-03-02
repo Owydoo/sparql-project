@@ -30,18 +30,13 @@ export class AppComponent {
     );
     params = params.append('format', 'json');
 
-    interface ResponseObject {
-
-    }
-
     this.http
       .get('http://dbpedia.org/sparql', { headers: headers, params: params })
       .subscribe((data:any) => {
         // console.log("data object : ",data.results.bindings);
-        console.log("data object", data);
+        // console.log("data object", data);
         console.log("data test", data.results.bindings[0].picture.value);
         this.sparkqlData = data.results.bindings[0].picture.value;
-        console.log("data en string : ", data.toString());
         
         // this.sparkqlData = data.results.toString(); // 3
       });
