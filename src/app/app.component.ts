@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
-
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +9,24 @@ import {
 })
 export class AppComponent {
   title = 'sparql-project';
-  sparkqlData: string = 'hello sparql';
-  constructor(private http: HttpClient) {}
+  sparkqlData: string = '';
+  form = this.fb.group({
+    category: ['', Validators.required],
+    artistName: [''],
+    artistGenre: [''],
+    albumName: [''],
+    albumGenre: [''],
+    albumArtistName: [''],
+    trackName: [''],
+    trackAlbumName: [''],
+    trackArtistName: [''],
+    trackTypeOfTrack: [''],
+  });
+  constructor(private http: HttpClient, private fb: FormBuilder) {}
+
+  logForm = () => {
+    console.log(this.form.value);
+  };
 
   doRequest = () => {
     console.log('hello');
@@ -32,12 +44,12 @@ export class AppComponent {
 
     this.http
       .get('http://dbpedia.org/sparql', { headers: headers, params: params })
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
         // console.log("data object : ",data.results.bindings);
         // console.log("data object", data);
-        console.log("data test", data.results.bindings[0].picture.value);
+        console.log('data test', data.results.bindings[0].picture.value);
         this.sparkqlData = data.results.bindings[0].picture.value;
-        
+
         // this.sparkqlData = data.results.toString(); // 3
       });
     console.log(this.sparkqlData); // 2
