@@ -7,6 +7,7 @@ export interface FormDto {
   artistCountry?: string;
   artistAlbum? : string;
   artistTrack?:string;
+  artistStatus?:string;
   albumName?: string;
   albumGenre?: string;
   albumArtistName?: string;

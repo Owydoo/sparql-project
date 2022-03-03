@@ -47,6 +47,19 @@
           <input id="artistTrack" type="text" formControlName="artistTrack" />
           <h4>artistsTrack : {{ form.value.artistTrack }}</h4>
           <!-- booleen pour s'il est mort -->
+          <span>artist status</span>
+          <label>
+            <input type="radio" value="Dead" formControlName="artistStatus" />
+            <span>Décédé</span>
+          </label>
+          <label>
+            <input type="radio" value="Alive" formControlName="artistStatus" />
+            <span>En vie</span>
+          </label>
+          <label>
+            <input type="radio" value="Ignore" formControlName="artistStatus"/>
+            <span>Ne pas prendre en compte</span>
+          </label>
           
         </div>
         <div *ngIf="form.value.category == 'Album'">
@@ -94,7 +107,7 @@
           <input id="trackLabel" type="text" formControlName="trackLabel" />
           <h4>trackLabel : {{ form.value.trackLabel }}</h4>
         </div>
-
+       
         <button type="submit">Soumettre la requête</button>
       </form>
 

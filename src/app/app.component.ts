@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { generateQuery, Params } from './querygenerator/queryGenerator';
 import { fetchQuery } from './querygenerator/queryDispatcher';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { TrackParams } from './querygenerator/track/TrackParams';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent{
   title = 'sparql-project';
   sparkqlData: string = '';
   sparkqlQuery: string = '';
@@ -30,6 +30,7 @@ export class AppComponent {
     artistCountry: [''],
     artistAlbum: [''],
     artistTrack: [''],
+    artistStatus: ['Ignore', Validators.required],
     albumName: [''],
     albumGenre: [''],
     albumArtistName: [''],
@@ -41,6 +42,7 @@ export class AppComponent {
     trackArtistName: [''],
     trackTypeOfTrack: [''],
     trackLabel: [''],
+    
   });
   constructor(private http: HttpClient, private fb: FormBuilder) {}
 
@@ -49,10 +51,7 @@ export class AppComponent {
   };
 
   doRequest = (paramsQuery: Params) => {
-    console.log('hello');
-
-    // Get data from form and get ArtistParams
-    // const paramsQuery: ArtistParams = new ArtistParams("Mark Knopfler", false, "United Kingdom")
+    console.log('hello'); 
 
     // Generate query string from from params
     const queryString = generateQuery(paramsQuery);
@@ -64,6 +63,25 @@ export class AppComponent {
     });
   };
 
+  /**
+   * depending on string value, returns a boolean or undefined which
+   * works with the SPARQL query we want to send to wikidata.
+   * @param stringStatus 
+   * @returns true, false or undefined
+   */
+  getArtistStatus = (stringStatus:string|undefined) => {
+    if (stringStatus == "Dead") {
+      return true;
+    }
+    else if (stringStatus == "Alive") {
+      return false;
+    }
+    else if (stringStatus == "Ignore") {
+      return undefined;
+    }
+    return undefined;
+  }
+
   onSubmit = () => {
     var formValue: FormDto = this.form.value;
     console.log('on submit : ', formValue);
@@ -71,7 +89,7 @@ export class AppComponent {
     if (formValue.category == 'Artist') {
       var artistName =
         formValue.artistName != '' ? formValue.artistName : undefined;
-      var artistIsDead = undefined;
+      var artistIsDead = this.getArtistStatus(formValue.artistStatus);
       var artistCountry =
         formValue.artistCountry != '' ? formValue.artistCountry : undefined;
       var artistInstrument =
