@@ -3,6 +3,7 @@ import { AlbumParams, ArtistParams, generateQuery } from './querygenerator/query
 import { fetchQuery } from './querygenerator/queryDispatcher';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormDto } from './utilities/formDto';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
     artistGenre: [''],
     artistInstrument: [''],
     artistLabel: [''],
+    artistCountry: [''],
     albumName: [''],
     albumGenre: [''],
     albumArtistName: [''],
@@ -36,11 +38,11 @@ export class AppComponent {
     console.log(this.form.value);
   };
 
-  doRequest = () => {
+  doRequest = (paramsQuery:any) => {
     console.log('hello');
 
     // Get data from form and get ArtistParams
-    const paramsQuery: ArtistParams = new ArtistParams("Mark Knopfler", false, "United Kingdom")
+    // const paramsQuery: ArtistParams = new ArtistParams("Mark Knopfler", false, "United Kingdom")
 
     // Generate query string from from params
     const queryString = generateQuery(paramsQuery)
@@ -51,6 +53,27 @@ export class AppComponent {
       this.manageData(data)
     });
   };
+
+  onSubmit = () => {
+
+    var formValue: FormDto = this.form.value;
+    console.log("on submit : ", formValue);
+
+    if (formValue.category == "Artist") {
+      var artistName = formValue.artistName != '' ? formValue.artistName : undefined;  
+      var artistIsDead = undefined;
+      var artistCountry = formValue.artistCountry != '' ? formValue.artistCountry : undefined;
+      var artistGenre = formValue.artistGenre != '' ? formValue.artistGenre : undefined;
+      var artistAlbum = undefined;
+      var artistTrack = undefined;
+      var artistInstrument = formValue.artistInstrument != '' ? formValue.artistInstrument : undefined;
+
+      var paramsQuery: ArtistParams = new ArtistParams(artistName, artistIsDead, artistCountry, artistGenre, artistAlbum, artistTrack, artistInstrument)
+      this.doRequest(paramsQuery);
+    }
+
+
+  }
 
   // Display the data on the screen
   manageData = (data: any) => {

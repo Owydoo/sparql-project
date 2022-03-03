@@ -4,7 +4,7 @@
 
     <!-- <button (click)="doRequest()">SLT BUTTON</button>  -->
     <div class="category-radio-container">
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <label>
           <input type="radio" value="Artist" formControlName="category" />
           <span>Artiste</span>
@@ -23,7 +23,7 @@
           <input id="artistName" type="text" formControlName="artistName" />
           <h4>artist name : {{ form.value.artistName }}</h4>
           <!-- text input for genre -->
-          <label for="artistGenre">Nom de l'artiste : </label>
+          <label for="artistGenre">Nom du genre : </label>
           <input id="artistGenre" type="text" formControlName="artistGenre" />
           <h4>artist genre : {{ form.value.artistGenre }}</h4>
           <!-- text input for instrument -->
@@ -34,6 +34,10 @@
           <label for="artistLabel">Nom du label : </label>
           <input id="artistLabel" type="text" formControlName="artistLabel" />
           <h4>artist name : {{ form.value.artistLabel }}</h4>
+          <!-- text input for country -->
+          <label for="artistCountry">Nom du country : </label>
+          <input id="artistCountry" type="text" formControlName="artistCountry" />
+          <h4>country name : {{ form.value.artistCountry }}</h4>
           <!-- booleen pour s'il est mort -->
           
         </div>
@@ -74,6 +78,8 @@
           <input id="trackArtistName" type="text" formControlName="trackArtistName" />
           <h4>nom de l'artiste du morceau : {{ form.value.trackArtistName }}</h4>
         </div>
+
+        <button type="submit">Soumettre la requête</button>
       </form>
 
       <h3>Catégorie sélectionnée : {{ form.value.category }}</h3>
@@ -82,7 +88,7 @@
   </div>
 
   <div class="response-container">
-    <button (click)="doRequest()">Test query</button>
+    <!-- <button (click)="doRequest()">Test query</button> -->
     <a href="{{sparkqlData}}">{{sparkqlData}}</a>
   </div>
 
