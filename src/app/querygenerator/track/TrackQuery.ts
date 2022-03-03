@@ -2,7 +2,7 @@ import { TrackParams } from "./TrackParams"
 
 export function generateTrackQuery(params: TrackParams): string {
     var query: string = ""
-    query += "SELECT ?track ?albumLabel\n"
+    query += "SELECT ?track ?trackLabel\n"
     query += "WHERE {\n"
 
     // FILTER ALBUMS

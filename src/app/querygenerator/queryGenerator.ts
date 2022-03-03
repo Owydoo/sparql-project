@@ -22,7 +22,7 @@ export function generateQuery(params: Params): string {
         }
         default: {
             query = ""
-            console.log("dfault")
+            console.log("default")
             break
         }
     } 
