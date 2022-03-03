@@ -17,7 +17,7 @@
           <input type="radio" value="Track" formControlName="category" />
           <span>Morceau</span>
         </label>
-        <div *ngIf="form.value.category == 'Artist'" [formGroup]="form">
+        <div *ngIf="form.value.category == 'Artist'">
           <!-- text input for name -->
           <label for="artistName">Nom de l'artiste : </label>
           <input id="artistName" type="text" formControlName="artistName" />
@@ -81,9 +81,16 @@
     </div>
   </div>
 
-  <div class="response-container"></div>
+  <div class="response-container">
+    <button (click)="doRequest()">Test query</button>
+    <a href="{{sparkqlData}}">{{sparkqlData}}</a>
+  </div>
 
-  <div class="sparql-request-container"></div>
+  <div class="sparql-request-container">
+    <div style="white-space:pre-wrap">
+      <p>{{ sparkqlQuery }}</p>
+    </div>
+  </div>
 
   <router-outlet></router-outlet>
 </div>
