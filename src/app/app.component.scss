@@ -20,7 +20,6 @@ h6 {
 .all {
   display: flex;
   flex-direction: row;
-  background-color: coral;
   height: 100%;
   width: 100%;
 }
@@ -37,8 +36,8 @@ h6 {
 }
 
 .category-radio-container{
-  display: flex;
-  flex-direction: column;
+padding-top: 15px;
+padding-bottom: 15px;
 }
 
 .category-radio-container form{
@@ -48,5 +47,19 @@ h6 {
 
 .sparql-request-container {
   width: 30%;
-  background-color: cadetblue;
+  background-color: rgb(222, 222, 222);
+}
+
+.pt-3 {
+  padding-top: 3px;
+}
+
+.form-container-card{
+  margin: 15px;
+}
+
+.sparql-request {
+  white-space:pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+  padding-top: 15px;
 }
