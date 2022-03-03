@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { AlbumParams, ArtistParams, generateQuery } from './querygenerator/queryGenerator';
+import { generateQuery } from './querygenerator/queryGenerator';
 import { fetchQuery } from './querygenerator/queryDispatcher';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ArtistParams } from './querygenerator/artist/ArtistParams';
+import { AlbumParams } from './querygenerator/album/AlbumParams';
 
 @Component({
   selector: 'app-root',
@@ -40,8 +42,9 @@ export class AppComponent {
     console.log('hello');
 
     // Get data from form and get ArtistParams
-    const paramsQuery: ArtistParams = new ArtistParams("Mark Knopfler", false, "United Kingdom")
-
+    //const paramsQuery: ArtistParams = new ArtistParams("Mark Knopfler", false, "United Kingdom")
+    const paramsQuery: AlbumParams = new AlbumParams("The Dark Side of the Moon")
+    
     // Generate query string from from params
     const queryString = generateQuery(paramsQuery)
     this.sparkqlQuery = queryString
