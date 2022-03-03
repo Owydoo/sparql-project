@@ -22,24 +22,43 @@
           <label for="artistName">Nom de l'artiste : </label>
           <input id="artistName" type="text" formControlName="artistName" />
           <h4>artist name : {{ form.value.artistName }}</h4>
-          <!-- radio or dropdown input for genre -->
+          <!-- text input for genre -->
           <label for="artistGenre">Nom de l'artiste : </label>
           <input id="artistGenre" type="text" formControlName="artistGenre" />
           <h4>artist genre : {{ form.value.artistGenre }}</h4>
+          <!-- text input for instrument -->
+          <label for="artistInstrument">Nom de l'instrument : </label>
+          <input id="artistInstrument" type="text" formControlName="artistInstrument" />
+          <h4>artist name : {{ form.value.artistInstrument }}</h4>
+          <!-- text input for label -->
+          <label for="artistLabel">Nom du label : </label>
+          <input id="artistLabel" type="text" formControlName="artistLabel" />
+          <h4>artist name : {{ form.value.artistLabel }}</h4>
+          <!-- booleen pour s'il est mort -->
+          
         </div>
         <div *ngIf="form.value.category == 'Album'">
           <!-- text input for name -->
           <label for="albumName">Nom de l'album : </label>
           <input id="albumName" type="text" formControlName="albumName" />
           <h4>album name : {{ form.value.albumName }}</h4>
-          <!-- radio or dropdown input for genre -->
+          <!-- text input for genre -->
           <label for="albumGenre">genre de l'album : </label>
           <input id="albumGenre" type="text" formControlName="albumGenre" />
           <h4>album genre : {{ form.value.albumGenre }}</h4>
-          <!-- radio or dropdown input for genre -->
+          <!-- text input for l'album de la liste -->
           <label for="albumArtistName">nom de l'artiste de l'album : </label>
           <input id="albumArtistName" type="text" formControlName="albumArtistName" />
           <h4>nom de l'artiste de l'album : {{ form.value.albumArtistName }}</h4>
+          <!-- text input for label -->
+          <label for="albumLabel">nom du label de l'album : </label>
+          <input id="albumLabel" type="text" formControlName="albumLabel" />
+          <h4>nom du label de l'album : {{ form.value.albumLabel }}</h4>
+          <!-- nom d'un morceau de l'album -->
+          <label for="albumTrack">nom d'un morceau de l'album : </label>
+          <input id="albumTrack" type="text" formControlName="albumTrack" />
+          <h4>nom d'un morceau de l'album : {{ form.value.albumTrack }}</h4>
+          
         </div>
         <div *ngIf="form.value.category == 'Track'">
           <!-- text input for name -->
@@ -47,16 +66,14 @@
           <input id="trackName" type="text" formControlName="trackName" />
           <h4>trackName : {{ form.value.trackName }}</h4>
           <!-- radio or dropdown input for genre -->
-          <label for="trackAlbumName">genre de l'album : </label>
+          <label for="trackAlbumName">nom de l'album : </label>
           <input id="trackAlbumName" type="text" formControlName="trackAlbumName" />
           <h4>trackAlbumName : {{ form.value.trackAlbumName }}</h4>
           <!-- radio or dropdown input for genre -->
           <label for="trackArtistName">nom de l'artiste de l'album : </label>
           <input id="trackArtistName" type="text" formControlName="trackArtistName" />
           <h4>nom de l'artiste du morceau : {{ form.value.trackArtistName }}</h4>
-          
         </div>
-      
       </form>
 
       <h3>Catégorie sélectionnée : {{ form.value.category }}</h3>
