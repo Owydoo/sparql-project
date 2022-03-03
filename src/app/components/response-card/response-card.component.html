@@ -1,0 +1,21 @@
+<mat-card *ngIf="isExample">
+  <mat-card-header>
+    <mat-card-title>{{exampleContent.name}}</mat-card-title>
+  </mat-card-header>
+  <img matCardImage src="{{exampleContent.image}}" />
+  <mat-card-content> {{exampleContent.description}}</mat-card-content>
+  <mat-card-actions align="start">
+    <a mat-button color="primary" href="{{exampleContent.link}}"a >Vers la page WikiData</a>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card *ngIf="!isExample">
+  <mat-card-header>
+    <mat-card-title>{{cardContent.name}}</mat-card-title>
+  </mat-card-header>
+  <img matCardImage src="{{cardContent.image}}" />
+  <mat-card-content> {{cardContent.description}}</mat-card-content>
+  <mat-card-actions align="start">
+    <a mat-button color="primary" href="{{cardContent.link}}"a >Vers la page WikiData</a>
+  </mat-card-actions>
+</mat-card>

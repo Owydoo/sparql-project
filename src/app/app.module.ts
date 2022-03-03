@@ -12,10 +12,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
+import { ResponseCardComponent } from './components/response-card/response-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ResponseCardComponent,
   ],
   imports: [
     BrowserModule,
