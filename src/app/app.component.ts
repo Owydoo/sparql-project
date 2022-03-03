@@ -12,15 +12,17 @@ export class AppComponent {
   title = 'sparql-project';
   
   sparkqlData: string = '';
+  sparkqlQuery: string = '';
 
   doRequest = () => {
     console.log('hello');
 
     // Get data from form and get ArtistParams
-    const paramsQuery: ArtistParams = new ArtistParams("Steve Jobs")
+    const paramsQuery: ArtistParams = new ArtistParams("Mark Knopfler", false, "United Kingdom")
 
     // Generate query string from from params
     const queryString = generateQuery(paramsQuery)
+    this.sparkqlQuery = queryString
   
     // Fetch data from wikidata
     fetchQuery(queryString).then((data:any) => {

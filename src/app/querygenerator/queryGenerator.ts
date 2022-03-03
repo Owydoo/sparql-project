@@ -27,15 +27,43 @@ export function generateQuery(params: Params): string {
 
 function generateArtistQuery(params: ArtistParams): string {
     var query: string = ""
-    query += "SELECT ?person \n"
-    query += "WHERE {"
+    query += "SELECT ?person ?personLabel\n"
+    query += "WHERE {\n"
 
+    // FILTER ARTISTS
+    query += "\n  #----KEEP ONLY ARTISTS--------\n"
+    query += "  ?person wdt:P106 ?occupation .\n"
+    query += "  ?occupation wdt:P31 wd:Q66715801 .\n"
+    
+    // NAME 
     if(params.name != null) {
-        query += "  ?person rdfs:label \"" + params.name + "\"@en . "
+        query += "\n  #----NAME--------\n"
+        query += "  ?person rdfs:label \"" + params.name + "\"@en . \n"
     }
-    query += "  SERVICE wikibase:label { " +
+
+    // COUNTRY
+    if(params.country != null) {
+        query += "\n  #----COUNTRY--------\n"
+        query += "  ?person wdt:P27 ?country . \n"
+        query += "  ?country rdfs:label \"" + params.country + "\"@en . \n"    
+    }
+    
+    // IS DEAD
+    if(params.isDead == true) {
+        query += "\n  #----IS DEAD--------\n"
+        query += "  FILTER(EXISTS {\n" +
+        "      ?person wdt:P570 ?referenceDeath .\n  })\n"
+    }
+    if(params.isDead == false) {
+        query += "\n  #----IS NOT DEAD--------\n"
+        query += "  FILTER(NOT EXISTS {\n" +
+        "      ?person wdt:P570 ?referenceDeath .\n  })\n"
+    }
+
+    // LABELS 
+    query += "  SERVICE wikibase:label {\n" +
              "      bd:serviceParam wikibase:language \"en\" . \n" +
-             "  }\n}"
+             "  }\n} LIMIT 10"
 
     return query
 }
@@ -50,19 +78,6 @@ function generateTrackQuery(params: ArtistParams): string {
     return query
 }
 
-function getPrefixs(): string {
-    return "PREFIX dbo:<http://dbpedia.org/ontology/>\n" +
-            "PREFIX dbp:<http://dbpedia.org/property/>\n"+
-            "PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"+
-            "PREFIX dbpedia:<http://dbpedia.org/resource/>\n"+
-            "PREFIX tto:<http://example.org/tuto/ontology#>\n"+
-            "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>\n"+
-            "PREFIX ttr:<http://example.org/tuto/resource#>\n"+
-            "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>\n" +
-            "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-}
-
-
 interface Params {
     kind: string
 }
@@ -76,15 +91,16 @@ export class ArtistParams implements Params {
     track?: string
     instrument?: string
     isDead?: boolean
+    label?: string
 
     constructor(
-    name?: string,
-    genre?: string,
-    country?: string,
-    album?: string,
-    track?: string,
-    instrument?: string,
-    isDead?: boolean
+        name?: string,
+        isDead?: boolean,
+        country?: string,
+        genre?: string,
+        album?: string,
+        track?: string,
+        instrument?: string,
     ){
         this.name = name
         this.genre = genre
@@ -98,21 +114,32 @@ export class ArtistParams implements Params {
 
 export class AlbumParams implements Params {
     kind: string = "album"
+    name?: string
+    genre?: string
+    artistName?: string
+    track?: string
+    label?: string
     constructor(
-    name?: string,
-    genre?: string,
-    date?: string,
-    artistName?: string,
-    track?: string,
-    label?: string){}
-    
+        name?: string,
+        genre?: string,
+        artistName?: string,
+        track?: string,
+        label?: string
+    ){
+        this.name = name
+        this.genre = genre
+        this.artistName = artistName
+        this.track = track
+        this.label = label
+    }    
 }
 
 export class TrackParams implements Params {
     kind: string = "track"
     constructor(
-    name?: string,
-    genre?: string,
-    date?: string,
-    artistName?: string,
-    album?: string){} }
+        name?: string,
+        genre?: string,
+        artistName?: string,
+        album?: string
+    ){} 
+}
