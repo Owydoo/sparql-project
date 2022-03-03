@@ -38,6 +38,14 @@
           <label for="artistCountry">Nom du country : </label>
           <input id="artistCountry" type="text" formControlName="artistCountry" />
           <h4>country name : {{ form.value.artistCountry }}</h4>
+          <!-- text input for album from this artist -->
+          <label for="artistAlbum">Nom d'un album de l'artiste : </label>
+          <input id="artistAlbum" type="text" formControlName="artistAlbum" />
+          <h4>artistAlbum : {{ form.value.artistAlbum }}</h4>
+          <!-- text input for one track from this artist -->
+          <label for="artistTrack">Nom d'un morceau de l'artiste : </label>
+          <input id="artistTrack" type="text" formControlName="artistTrack" />
+          <h4>artistsTrack : {{ form.value.artistTrack }}</h4>
           <!-- booleen pour s'il est mort -->
           
         </div>
@@ -69,14 +77,22 @@
           <label for="trackName">Nom du morceau : </label>
           <input id="trackName" type="text" formControlName="trackName" />
           <h4>trackName : {{ form.value.trackName }}</h4>
-          <!-- radio or dropdown input for genre -->
+          <!-- text input for track genre -->
+          <label for="trackGenre">Nom du genre : </label>
+          <input id="trackGenre" type="text" formControlName="trackGenre" />
+          <h4>trackGenre : {{ form.value.trackGenre }}</h4>
+          <!-- text input for album which the track is in -->
           <label for="trackAlbumName">nom de l'album : </label>
           <input id="trackAlbumName" type="text" formControlName="trackAlbumName" />
           <h4>trackAlbumName : {{ form.value.trackAlbumName }}</h4>
-          <!-- radio or dropdown input for genre -->
+          <!-- text input for the name of the artist that played this track -->
           <label for="trackArtistName">nom de l'artiste de l'album : </label>
           <input id="trackArtistName" type="text" formControlName="trackArtistName" />
           <h4>nom de l'artiste du morceau : {{ form.value.trackArtistName }}</h4>
+          <!-- text input for the name of the label for this track -->
+          <label for="trackLabel">nom du label : </label>
+          <input id="trackLabel" type="text" formControlName="trackLabel" />
+          <h4>trackLabel : {{ form.value.trackLabel }}</h4>
         </div>
 
         <button type="submit">Soumettre la requête</button>

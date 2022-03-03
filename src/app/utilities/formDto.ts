@@ -5,14 +5,18 @@ export interface FormDto {
   artistInstrument?: string;
   artistLabel?: string;
   artistCountry?: string;
+  artistAlbum? : string;
+  artistTrack?:string;
   albumName?: string;
   albumGenre?: string;
   albumArtistName?: string;
   albumLabel?: string;
   albumTrack?: string;
   trackName?: string;
+  trackGenre?: string;
   trackAlbumName?: string;
   trackArtistName?: string;
   trackTypeOfTrack?: string;
+  trackLabel?: string;
 }
 
