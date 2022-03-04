@@ -14,7 +14,7 @@ import { ResponseCardDto } from './utilities/ResponseCardDto';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent{
+export class AppComponent {
   title = 'sparql-project';
   sparkqlData: string = '';
   dataToDisplay: ResponseCardDto[] = [];
@@ -44,7 +44,6 @@ export class AppComponent{
     trackArtistName: [''],
     trackTypeOfTrack: [''],
     trackLabel: [''],
-    
   });
   constructor(private http: HttpClient, private fb: FormBuilder) {}
 
@@ -53,7 +52,7 @@ export class AppComponent{
   };
 
   doRequest = (paramsQuery: Params) => {
-    console.log('hello'); 
+    console.log('hello');
 
     // Generate query string from from params
     const queryString = generateQuery(paramsQuery);
@@ -68,21 +67,19 @@ export class AppComponent{
   /**
    * depending on string value, returns a boolean or undefined which
    * works with the SPARQL query we want to send to wikidata.
-   * @param stringStatus 
+   * @param stringStatus
    * @returns true, false or undefined
    */
-  getArtistStatus = (stringStatus:string|undefined) => {
-    if (stringStatus == "Dead") {
+  getArtistStatus = (stringStatus: string | undefined) => {
+    if (stringStatus == 'Dead') {
       return true;
-    }
-    else if (stringStatus == "Alive") {
+    } else if (stringStatus == 'Alive') {
       return false;
-    }
-    else if (stringStatus == "Ignore") {
+    } else if (stringStatus == 'Ignore') {
       return undefined;
     }
     return undefined;
-  }
+  };
 
   onSubmit = () => {
     var formValue: FormDto = this.form.value;
@@ -102,8 +99,10 @@ export class AppComponent{
         formValue.artistLabel != '' ? formValue.artistLabel : undefined;
       var artistGenre =
         formValue.artistGenre != '' ? formValue.artistGenre : undefined;
-      var artistAlbum = formValue.artistAlbum != '' ? formValue.artistAlbum : undefined;
-      var artistTrack = formValue.artistTrack != '' ? formValue.artistTrack : undefined;
+      var artistAlbum =
+        formValue.artistAlbum != '' ? formValue.artistAlbum : undefined;
+      var artistTrack =
+        formValue.artistTrack != '' ? formValue.artistTrack : undefined;
 
       var paramsArtistQuery: ArtistParams = new ArtistParams(
         artistName,
@@ -187,7 +186,7 @@ export class AppComponent{
       name: data.personLabel.value,
       link: data.person.value,
       description: data.description.value,
-      image: data.image.value
+      image: data.image?.value
     }
     return dto
   }
@@ -197,21 +196,18 @@ export class AppComponent{
       name: data.albumLabel.value,
       link: data.album.value,
       description: data.description.value,
-      image: data.image.value
+      image: data.image?.value
     }
     return dto
   }
 
   trackToDTO = (data:any): ResponseCardDto => {
     var dto : ResponseCardDto = {
-      name: data.trackLabel.value,
-      link: data.track.value,
-      description: data.description.value,
-      image: data.image.value
+      name: data.trackLabel?.value,
+      link: data.track?.value,
+      description: data.description?.value,
+      image: data.image?.value
     }
     return dto
   }
 }
-
-
-

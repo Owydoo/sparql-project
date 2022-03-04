@@ -11,11 +11,12 @@
 
 <mat-card *ngIf="!isExample">
   <mat-card-header>
-    <mat-card-title>{{cardContent.name}}</mat-card-title>
+    <mat-card-title>{{content.name}}</mat-card-title>
   </mat-card-header>
-  <img matCardImage src="{{cardContent.image}}" />
-  <mat-card-content> {{cardContent.description}}</mat-card-content>
+  <img *ngIf="content.image != undefined" matCardImage src="{{content.image}}" />
+  <img *ngIf="content.image == undefined" matCardImage src="./../../../assets/placeholder.png" />
+  <mat-card-content> {{content.description}}</mat-card-content>
   <mat-card-actions align="start">
-    <a mat-button color="primary" href="{{cardContent.link}}"a >Vers la page WikiData</a>
+    <a mat-button color="primary" href="{{content.link}}"a >Vers la page WikiData</a>
   </mat-card-actions>
 </mat-card>
