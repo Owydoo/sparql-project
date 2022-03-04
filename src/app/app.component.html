@@ -25,7 +25,10 @@
               <span>Morceau</span>
             </label>
           </div>
-          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Artist'">
+          <div
+            class="input-fields row pt-3"
+            *ngIf="form.value.category == 'Artist'"
+          >
             <mat-form-field>
               <input
                 matInput=""
@@ -62,7 +65,10 @@
               />
             </mat-form-field>
           </div>
-          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Artist'">
+          <div
+            class="input-fields row pt-3"
+            *ngIf="form.value.category == 'Artist'"
+          >
             <label>
               <input type="radio" value="Dead" formControlName="artistStatus" />
               <span>Décédé(s)</span>
@@ -84,7 +90,10 @@
               <span>Ne pas prendre en compte</span>
             </label>
           </div>
-          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Album'">
+          <div
+            class="input-fields row pt-3"
+            *ngIf="form.value.category == 'Album'"
+          >
             <mat-form-field>
               <input
                 matInput=""
@@ -122,7 +131,10 @@
             </mat-form-field>
           </div>
 
-          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Track'">
+          <div
+            class="input-fields row pt-3"
+            *ngIf="form.value.category == 'Track'"
+          >
             <mat-form-field>
               <input
                 matInput=""
@@ -147,6 +159,17 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
+          <mat-form-field>
+            <input
+              step="1"
+              min="0"
+              max="50"
+              type="number"
+              matInput=""
+              placeholder="Nombre max de réponses"
+              formControlName="limit"
+            />
+          </mat-form-field>
           <button
             mat-raised-button=""
             type="submit"
@@ -163,7 +186,9 @@
   <div class="response-container">
     <!-- <a href="{{ sparkqlData }}">{{ sparkqlData }}</a> -->
     <!-- <div class="row" *ngIf="dataToDisplay?.length == 0">Pas de résultat trouvé</div> -->
-    <mat-card class="form-container-card" *ngIf="dataToDisplay?.length == 0">Pas de résultat trouvé</mat-card>
+    <mat-card class="form-container-card" *ngIf="dataToDisplay?.length == 0"
+      >Pas de résultat trouvé</mat-card
+    >
 
     <div class="row spinner" *ngIf="isLoading"><mat-spinner></mat-spinner></div>
     <div class="row" *ngFor="let item of dataToDisplay">

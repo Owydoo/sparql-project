@@ -19,5 +19,6 @@ export interface FormDto {
   trackArtistName?: string;
   trackTypeOfTrack?: string;
   trackLabel?: string;
+  limit?: number;
 }
 

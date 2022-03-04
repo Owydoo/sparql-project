@@ -19,7 +19,7 @@ export class AppComponent {
   sparkqlData: string = '';
   dataToDisplay?: ResponseCardDto[] = undefined;
   sparkqlQuery: string = '';
-  isLoading:boolean = false;
+  isLoading: boolean = false;
 
   //This is the category of the last request that has been made
   lastRequestCategory: string = '';
@@ -45,6 +45,7 @@ export class AppComponent {
     trackArtistName: [''],
     trackTypeOfTrack: [''],
     trackLabel: [''],
+    limit: [10],
   });
   constructor(private http: HttpClient, private fb: FormBuilder) {}
 
@@ -61,8 +62,7 @@ export class AppComponent {
     this.sparkqlQuery = queryString;
 
     // Fetch data from wikidata
-    fetchQuery(queryString)
-    .then((data: any) => {
+    fetchQuery(queryString).then((data: any) => {
       this.manageData(data);
       this.isLoading = false;
     });
@@ -86,7 +86,6 @@ export class AppComponent {
   };
 
   onSubmit = () => {
-
     this.dataToDisplay = undefined;
 
     var formValue: FormDto = this.form.value;
@@ -110,6 +109,7 @@ export class AppComponent {
         formValue.artistAlbum != '' ? formValue.artistAlbum : undefined;
       var artistTrack =
         formValue.artistTrack != '' ? formValue.artistTrack : undefined;
+      var artistlimit = formValue.limit != null ? formValue.limit : undefined;
 
       var paramsArtistQuery: ArtistParams = new ArtistParams(
         artistName,
@@ -119,7 +119,8 @@ export class AppComponent {
         artistLabel,
         artistGenre,
         artistAlbum,
-        artistTrack
+        artistTrack,
+        artistlimit
       );
 
       this.doRequest(paramsArtistQuery);
@@ -134,13 +135,15 @@ export class AppComponent {
         formValue.albumTrack != '' ? formValue.albumTrack : undefined;
       var albumLabel =
         formValue.albumLabel != '' ? formValue.albumLabel : undefined;
+      var albumlimit = formValue.limit != null ? formValue.limit : undefined;
 
       var paramsAlbumQuery: AlbumParams = new AlbumParams(
         albumName,
         albumGenre,
         albumArtistName,
         albumTrack,
-        albumLabel
+        albumLabel,
+        albumlimit
       );
 
       this.doRequest(paramsAlbumQuery);
@@ -155,13 +158,15 @@ export class AppComponent {
         formValue.trackAlbumName != '' ? formValue.trackAlbumName : undefined;
       var trackLabel =
         formValue.trackLabel != '' ? formValue.trackLabel : undefined;
+      var tracklimit = formValue.limit != null ? formValue.limit : undefined;
 
       var paramsTrackQuery: TrackParams = new TrackParams(
         trackName,
         trackGenre,
         trackArtistName,
         trackAlbum,
-        trackLabel
+        trackLabel,
+        tracklimit,
       );
 
       this.doRequest(paramsTrackQuery);
@@ -173,48 +178,45 @@ export class AppComponent {
   // Display the data on the screen
   manageData = (data: any) => {
     console.log(data);
-    if (this.lastRequestCategory == "Artist") {
-      this.dataToDisplay = data.results.bindings.map(this.artistToDTO)
-      console.log(this.dataToDisplay)
-    }
-    else if (this.lastRequestCategory == "Album") {
-      this.dataToDisplay = data.results.bindings.map(this.albumToDTO)
-      console.log(this.dataToDisplay)
-    }
-    else if (this.lastRequestCategory == "Track"){
-      this.dataToDisplay = data.results.bindings.map(this.trackToDTO)
-      console.log(this.dataToDisplay)
+    if (this.lastRequestCategory == 'Artist') {
+      this.dataToDisplay = data.results.bindings.map(this.artistToDTO);
+      console.log(this.dataToDisplay);
+    } else if (this.lastRequestCategory == 'Album') {
+      this.dataToDisplay = data.results.bindings.map(this.albumToDTO);
+      console.log(this.dataToDisplay);
+    } else if (this.lastRequestCategory == 'Track') {
+      this.dataToDisplay = data.results.bindings.map(this.trackToDTO);
+      console.log(this.dataToDisplay);
     }
   };
 
-
-  artistToDTO = (data:any): ResponseCardDto => {
-    var dto : ResponseCardDto = {
+  artistToDTO = (data: any): ResponseCardDto => {
+    var dto: ResponseCardDto = {
       name: data.personLabel.value,
       link: data.person.value,
       description: data.description.value,
-      image: data.image?.value
-    }
-    return dto
-  }
+      image: data.image?.value,
+    };
+    return dto;
+  };
 
-  albumToDTO = (data:any): ResponseCardDto => {
-    var dto : ResponseCardDto = {
+  albumToDTO = (data: any): ResponseCardDto => {
+    var dto: ResponseCardDto = {
       name: data.albumLabel.value,
       link: data.album.value,
       description: data.description.value,
-      image: data.image?.value
-    }
-    return dto
-  }
+      image: data.image?.value,
+    };
+    return dto;
+  };
 
-  trackToDTO = (data:any): ResponseCardDto => {
-    var dto : ResponseCardDto = {
+  trackToDTO = (data: any): ResponseCardDto => {
+    var dto: ResponseCardDto = {
       name: data.trackLabel?.value,
       link: data.track?.value,
       description: data.description?.value,
-      image: data.image?.value
-    }
-    return dto
-  }
+      image: data.image?.value,
+    };
+    return dto;
+  };
 }
