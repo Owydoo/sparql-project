@@ -2,13 +2,14 @@ import { ArtistParams } from "./ArtistParams"
 
 export function generateArtistQuery(params: ArtistParams): string {
     var query: string = ""
-    query += "SELECT ?person ?personLabel ?instrument\n"
+    query += "SELECT ?person ?personLabel ?description ?instrument ?image \n"
     query += "WHERE {\n"
 
     // FILTER ARTISTS
     query += "\n  #----KEEP ONLY ARTISTS--------\n"
     query += "  ?person wdt:P106 ?occupation .\n"
     query += "  ?occupation wdt:P31 wd:Q66715801 .\n"
+    query += "  ?person wdt:P18 ?image .\n"
     
     // NAME 
     if(params.name != null) {
@@ -58,8 +59,9 @@ export function generateArtistQuery(params: ArtistParams): string {
 
     // LABELS WIKI
     query += "\n  SERVICE wikibase:label {\n" +
-             "      bd:serviceParam wikibase:language \"en\" . \n" +
-             "  }\n} LIMIT 10"
+    "      bd:serviceParam wikibase:language \"en\" . \n" +
+    "      ?person schema:description ?description . \n" +
+    "  }\n} LIMIT 10"
 
     return query
 }

@@ -23,7 +23,7 @@ export class AppComponent{
 
   form = this.fb.group({
     category: ['', Validators.required],
-    artistName: [''],
+    artistName: ['Eric Clapton'],
     artistGenre: [''],
     artistInstrument: [''],
     artistLabel: [''],
