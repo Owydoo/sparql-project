@@ -2,7 +2,7 @@ import { TrackParams } from "./TrackParams"
 
 export function generateTrackQuery(params: TrackParams): string {
     var query: string = ""
-    query += "SELECT ?track ?trackLabel\n"
+    query += "SELECT ?track ?trackLabel ?description \n"
     query += "WHERE {\n"
 
     // FILTER ALBUMS
@@ -46,6 +46,8 @@ export function generateTrackQuery(params: TrackParams): string {
     // LABELS WIKI
     query += "\n  SERVICE wikibase:label {\n" +
              "      bd:serviceParam wikibase:language \"en\" . \n" +
+             "      ?track schema:description ?description . \n" +
+             "      ?track rdfs:label ?trackLabel . \n" +
              "  }\n} LIMIT 10"
 
     return query

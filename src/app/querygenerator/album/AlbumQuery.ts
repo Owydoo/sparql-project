@@ -2,7 +2,7 @@ import { AlbumParams } from "./AlbumParams"
 
 export function generateAlbumQuery(params: AlbumParams): string {
     var query: string = ""
-    query += "SELECT ?album ?albumLabel\n"
+    query += "SELECT ?album ?albumLabel ?description \n"
     query += "WHERE {\n"
 
     // FILTER ALBUMS
@@ -46,6 +46,8 @@ export function generateAlbumQuery(params: AlbumParams): string {
     // LABELS WIKI
     query += "\n  SERVICE wikibase:label {\n" +
              "      bd:serviceParam wikibase:language \"en\" . \n" +
+             "      ?album schema:description ?description . \n" +
+             "      ?album rdfs:label ?albumLabel . \n" +
              "  }\n} LIMIT 10"
 
     return query

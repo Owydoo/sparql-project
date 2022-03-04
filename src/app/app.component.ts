@@ -7,6 +7,7 @@ import { FormDto } from './utilities/formDto';
 import { ArtistParams } from './querygenerator/artist/ArtistParams';
 import { AlbumParams } from './querygenerator/album/AlbumParams';
 import { TrackParams } from './querygenerator/track/TrackParams';
+import { ResponseCardDto } from './utilities/ResponseCardDto';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { TrackParams } from './querygenerator/track/TrackParams';
 export class AppComponent{
   title = 'sparql-project';
   sparkqlData: string = '';
+  dataToDisplay: ResponseCardDto[] = [];
   sparkqlQuery: string = '';
 
   //This is the category of the last request that has been made
@@ -169,6 +171,8 @@ export class AppComponent{
 
     if (this.lastRequestCategory == "Artist") {
       this.sparkqlData = data.results.bindings[0].person.value;
+      this.dataToDisplay = data.results.bindings.map(this.artistToDTO)
+      console.log(this.dataToDisplay)
     }
     else if (this.lastRequestCategory == "Album") {
       
@@ -180,4 +184,20 @@ export class AppComponent{
     }
 
   };
+
+
+   artistToDTO = (data:any): ResponseCardDto => {
+
+    var dto : ResponseCardDto = {
+      name: data.personLabel.value,
+      link: data.person.value,
+      description: data.description.value,
+      image: data.image.value
+    }
+    return dto
+
+  }
 }
+
+
+
