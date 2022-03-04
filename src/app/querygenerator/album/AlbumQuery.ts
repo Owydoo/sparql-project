@@ -2,12 +2,13 @@ import { AlbumParams } from "./AlbumParams"
 
 export function generateAlbumQuery(params: AlbumParams): string {
     var query: string = ""
-    query += "SELECT ?album ?albumLabel ?description \n"
+    query += "SELECT DISTINCT ?album ?albumLabel ?description ?image\n"
     query += "WHERE {\n"
 
     // FILTER ALBUMS
     query += "\n  #----KEEP ONLY ALBUMS--------\n"
     query += "  ?album wdt:P31 wd:Q482994 .\n"
+    query += "  OPTIONAL { ?album wdt:P18 ?image }\n"
     
     // NAME 
     if(params.name != null) {

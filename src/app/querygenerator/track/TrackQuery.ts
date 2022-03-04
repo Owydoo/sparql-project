@@ -2,12 +2,13 @@ import { TrackParams } from "./TrackParams"
 
 export function generateTrackQuery(params: TrackParams): string {
     var query: string = ""
-    query += "SELECT ?track ?trackLabel ?description \n"
+    query += "SELECT DISTINCT ?track ?trackLabel ?description ?image \n"
     query += "WHERE {\n"
 
     // FILTER ALBUMS
     query += "\n  #----KEEP ONLY TRACK--------\n"
     query += "  ?track wdt:P31 wd:Q105543609 .\n"
+    query += "  OPTIONAL { ?track wdt:P18 ?image }\n"
     
     // NAME 
     if(params.name != null) {

@@ -2,14 +2,14 @@ import { ArtistParams } from "./ArtistParams"
 
 export function generateArtistQuery(params: ArtistParams): string {
     var query: string = ""
-    query += "SELECT ?person ?personLabel ?description ?instrument ?image \n"
+    query += "SELECT DISTINCT ?person ?personLabel ?description ?instrument ?image \n"
     query += "WHERE {\n"
 
     // FILTER ARTISTS
     query += "\n  #----KEEP ONLY ARTISTS--------\n"
     query += "  ?person wdt:P106 ?occupation .\n"
     query += "  ?occupation wdt:P31 wd:Q66715801 .\n"
-    query += "  ?person wdt:P18 ?image .\n"
+    query += "  OPTIONAL { ?person wdt:P18 ?image }\n"
     
     // NAME 
     if(params.name != null) {

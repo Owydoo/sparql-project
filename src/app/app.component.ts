@@ -167,27 +167,22 @@ export class AppComponent{
   // Display the data on the screen
   manageData = (data: any) => {
     console.log(data);
-    var formValue: FormDto = this.form.value;
-
     if (this.lastRequestCategory == "Artist") {
-      this.sparkqlData = data.results.bindings[0].person.value;
       this.dataToDisplay = data.results.bindings.map(this.artistToDTO)
       console.log(this.dataToDisplay)
     }
     else if (this.lastRequestCategory == "Album") {
-      
-      this.sparkqlData = data.results.bindings[0].album.value;
+      this.dataToDisplay = data.results.bindings.map(this.albumToDTO)
+      console.log(this.dataToDisplay)
     }
     else if (this.lastRequestCategory == "Track"){
-
-      this.sparkqlData = data.results.bindings[0].track.value;
+      this.dataToDisplay = data.results.bindings.map(this.trackToDTO)
+      console.log(this.dataToDisplay)
     }
-
   };
 
 
-   artistToDTO = (data:any): ResponseCardDto => {
-
+  artistToDTO = (data:any): ResponseCardDto => {
     var dto : ResponseCardDto = {
       name: data.personLabel.value,
       link: data.person.value,
@@ -195,7 +190,26 @@ export class AppComponent{
       image: data.image.value
     }
     return dto
+  }
 
+  albumToDTO = (data:any): ResponseCardDto => {
+    var dto : ResponseCardDto = {
+      name: data.albumLabel.value,
+      link: data.album.value,
+      description: data.description.value,
+      image: data.image.value
+    }
+    return dto
+  }
+
+  trackToDTO = (data:any): ResponseCardDto => {
+    var dto : ResponseCardDto = {
+      name: data.trackLabel.value,
+      link: data.track.value,
+      description: data.description.value,
+      image: data.image.value
+    }
+    return dto
   }
 }
 
