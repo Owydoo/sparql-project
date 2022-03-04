@@ -49,7 +49,7 @@ export function generateAlbumQuery(params: AlbumParams): string {
              "      bd:serviceParam wikibase:language \"en\" . \n" +
              "      ?album schema:description ?description . \n" +
              "      ?album rdfs:label ?albumLabel . \n" +
-             "  }\n} LIMIT 10"
+             "  }\n} LIMIT" + params.limit
 
     return query
 }

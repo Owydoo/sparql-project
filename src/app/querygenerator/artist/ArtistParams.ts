@@ -10,6 +10,7 @@ export class ArtistParams implements Params {
     genre?: string
     album?: string
     track?: string
+    limit: number
 
     constructor(
         name?: string,
@@ -20,6 +21,7 @@ export class ArtistParams implements Params {
         genre?: string,
         album?: string,
         track?: string,
+        limit?: number
     ){
         this.name = name
         this.genre = genre
@@ -29,5 +31,6 @@ export class ArtistParams implements Params {
         this.instrument = instrument
         this.isDead = isDead
         this.label = label
+        this.limit = limit ? limit : 10
     }
 }

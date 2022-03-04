@@ -62,7 +62,7 @@ export function generateArtistQuery(params: ArtistParams): string {
     "      bd:serviceParam wikibase:language \"en\" . \n" +
     "      ?person schema:description ?description . \n" +
     "      ?person rdfs:label ?personLabel . \n" +
-    "  }\n} LIMIT 10"
+    "  }\n} LIMIT " + params.limit
 
     return query
 }

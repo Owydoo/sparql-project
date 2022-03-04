@@ -31,4 +31,5 @@ export function generateQuery(params: Params): string {
 
 export interface Params {
     kind: string
+    limit: number
 }
