@@ -13,7 +13,8 @@
   <mat-card-header>
     <mat-card-title>{{cardContent.name}}</mat-card-title>
   </mat-card-header>
-  <img matCardImage src="{{cardContent.image}}" />
+  <img *ngIf="cardContent.image != ''" matCardImage src="{{cardContent.image}}" />
+  <img *ngIf="cardContent.image == ''" matCardImage src="./../../../assets/placeholder.png" />
   <mat-card-content> {{cardContent.description}}</mat-card-content>
   <mat-card-actions align="start">
     <a mat-button color="primary" href="{{cardContent.link}}"a >Vers la page WikiData</a>

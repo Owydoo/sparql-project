@@ -36,7 +36,8 @@ export class ResponseCardComponent implements OnInit {
   ngOnInit() {
     this.cardContent.name = this.content.name;
     this.cardContent.link = this.content.link;
-    this.cardContent.image = this.content.image;
+    // this.cardContent.image = this.content.image;
+    this.cardContent.image = "";
     this.cardContent.description = this.content.description;
 
     console.log("content in response card", JSON.stringify(this.content) );
