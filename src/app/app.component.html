@@ -3,128 +3,182 @@
     <!-- <h1>yo</h1> -->
 
     <!-- <button (click)="doRequest()">SLT BUTTON</button>  -->
-    <div class="category-radio-container">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <label>
-          <input type="radio" value="Artist" formControlName="category" />
-          <span>Artiste</span>
-        </label>
-        <label>
-          <input type="radio" value="Album" formControlName="category" />
-          <span>Album</span>
-        </label>
-        <label>
-          <input type="radio" value="Track" formControlName="category" />
-          <span>Morceau</span>
-        </label>
-        <div *ngIf="form.value.category == 'Artist'">
-          <!-- text input for name -->
-          <label for="artistName">Nom de l'artiste : </label>
-          <input id="artistName" type="text" formControlName="artistName" />
-          <h4>artist name : {{ form.value.artistName }}</h4>
-          <!-- text input for genre -->
-          <label for="artistGenre">Nom du genre : </label>
-          <input id="artistGenre" type="text" formControlName="artistGenre" />
-          <h4>artist genre : {{ form.value.artistGenre }}</h4>
-          <!-- text input for instrument -->
-          <label for="artistInstrument">Nom de l'instrument : </label>
-          <input id="artistInstrument" type="text" formControlName="artistInstrument" />
-          <h4>artist name : {{ form.value.artistInstrument }}</h4>
-          <!-- text input for label -->
-          <label for="artistLabel">Nom du label : </label>
-          <input id="artistLabel" type="text" formControlName="artistLabel" />
-          <h4>artist name : {{ form.value.artistLabel }}</h4>
-          <!-- text input for country -->
-          <label for="artistCountry">Nom du country : </label>
-          <input id="artistCountry" type="text" formControlName="artistCountry" />
-          <h4>country name : {{ form.value.artistCountry }}</h4>
-          <!-- text input for album from this artist -->
-          <label for="artistAlbum">Nom d'un album de l'artiste : </label>
-          <input id="artistAlbum" type="text" formControlName="artistAlbum" />
-          <h4>artistAlbum : {{ form.value.artistAlbum }}</h4>
-          <!-- text input for one track from this artist -->
-          <label for="artistTrack">Nom d'un morceau de l'artiste : </label>
-          <input id="artistTrack" type="text" formControlName="artistTrack" />
-          <h4>artistsTrack : {{ form.value.artistTrack }}</h4>
-          <!-- booleen pour s'il est mort -->
-          <span>artist status</span>
-          <label>
-            <input type="radio" value="Dead" formControlName="artistStatus" />
-            <span>Décédé</span>
-          </label>
-          <label>
-            <input type="radio" value="Alive" formControlName="artistStatus" />
-            <span>En vie</span>
-          </label>
-          <label>
-            <input type="radio" value="Ignore" formControlName="artistStatus"/>
-            <span>Ne pas prendre en compte</span>
-          </label>
-          
-        </div>
-        <div *ngIf="form.value.category == 'Album'">
-          <!-- text input for name -->
-          <label for="albumName">Nom de l'album : </label>
-          <input id="albumName" type="text" formControlName="albumName" />
-          <h4>album name : {{ form.value.albumName }}</h4>
-          <!-- text input for genre -->
-          <label for="albumGenre">genre de l'album : </label>
-          <input id="albumGenre" type="text" formControlName="albumGenre" />
-          <h4>album genre : {{ form.value.albumGenre }}</h4>
-          <!-- text input for l'album de la liste -->
-          <label for="albumArtistName">nom de l'artiste de l'album : </label>
-          <input id="albumArtistName" type="text" formControlName="albumArtistName" />
-          <h4>nom de l'artiste de l'album : {{ form.value.albumArtistName }}</h4>
-          <!-- text input for label -->
-          <label for="albumLabel">nom du label de l'album : </label>
-          <input id="albumLabel" type="text" formControlName="albumLabel" />
-          <h4>nom du label de l'album : {{ form.value.albumLabel }}</h4>
-          <!-- nom d'un morceau de l'album -->
-          <label for="albumTrack">nom d'un morceau de l'album : </label>
-          <input id="albumTrack" type="text" formControlName="albumTrack" />
-          <h4>nom d'un morceau de l'album : {{ form.value.albumTrack }}</h4>
-          
-        </div>
-        <div *ngIf="form.value.category == 'Track'">
-          <!-- text input for name -->
-          <label for="trackName">Nom du morceau : </label>
-          <input id="trackName" type="text" formControlName="trackName" />
-          <h4>trackName : {{ form.value.trackName }}</h4>
-          <!-- text input for track genre -->
-          <label for="trackGenre">Nom du genre : </label>
-          <input id="trackGenre" type="text" formControlName="trackGenre" />
-          <h4>trackGenre : {{ form.value.trackGenre }}</h4>
-          <!-- text input for album which the track is in -->
-          <label for="trackAlbumName">nom de l'album : </label>
-          <input id="trackAlbumName" type="text" formControlName="trackAlbumName" />
-          <h4>trackAlbumName : {{ form.value.trackAlbumName }}</h4>
-          <!-- text input for the name of the artist that played this track -->
-          <label for="trackArtistName">nom de l'artiste de l'album : </label>
-          <input id="trackArtistName" type="text" formControlName="trackArtistName" />
-          <h4>nom de l'artiste du morceau : {{ form.value.trackArtistName }}</h4>
-          <!-- text input for the name of the label for this track -->
-          <label for="trackLabel">nom du label : </label>
-          <input id="trackLabel" type="text" formControlName="trackLabel" />
-          <h4>trackLabel : {{ form.value.trackLabel }}</h4>
-        </div>
-       
-        <button type="submit">Soumettre la requête</button>
-      </form>
 
-      <h3>Catégorie sélectionnée : {{ form.value.category }}</h3>
-      <button (click)="logForm()">log form</button>
-    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card class="form-container-card">
+        <mat-card-header>
+          <mat-card-title>Remplissez le formulaire</mat-card-title>
+        </mat-card-header>
+        <mat-divider inset></mat-divider>
+        <mat-card-content>
+          <div class="row category-radio-container">
+            <label>
+              <input type="radio" value="Artist" formControlName="category" />
+              <span>Artiste</span>
+            </label>
+            <label>
+              <input type="radio" value="Album" formControlName="category" />
+              <span>Album</span>
+            </label>
+            <label>
+              <input type="radio" value="Track" formControlName="category" />
+              <span>Morceau</span>
+            </label>
+          </div>
+          <div class="row pt-3" *ngIf="form.value.category == 'Artist'">
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de l'artiste"
+                formControlName="artistName"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Genre musical"
+                formControlName="artistGenre"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Instrument joué"
+                formControlName="artistInstrument"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de son Label"
+                formControlName="artistLabel"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de son pays d'origine"
+                formControlName="artistCountry"
+              />
+            </mat-form-field>
+          </div>
+          <div class="row pt-3" *ngIf="form.value.category == 'Artist'">
+            <label>
+              <input type="radio" value="Dead" formControlName="artistStatus" />
+              <span>Décédé</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Alive"
+                formControlName="artistStatus"
+              />
+              <span>En vie</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Ignore"
+                formControlName="artistStatus"
+              />
+              <span>Ne pas prendre en compte</span>
+            </label>
+          </div>
+          <div class="row pt-3" *ngIf="form.value.category == 'Album'">
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de l'album"
+                formControlName="albumName"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Genre musical"
+                formControlName="albumGenre"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de l'artiste de l'album"
+                formControlName="albumArtistName"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom du label de l'album"
+                formControlName="albumLabel"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom d'une piste de l'album"
+                formControlName="albumTrack"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="row pt-3" *ngIf="form.value.category == 'Track'">
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom du morceau"
+                formControlName="trackName"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de l'album"
+                formControlName="trackAlbumName"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput=""
+                placeholder="Nom de l'artiste du morceau"
+                formControlName="trackArtistName"
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-raised-button=""
+            type="submit"
+            color="primary"
+            [disabled]="form.invalid"
+          >
+            Soumettre la requête
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
   </div>
 
   <div class="response-container">
-    <!-- <button (click)="doRequest()">Test query</button> -->
-    <a href="{{sparkqlData}}">{{sparkqlData}}</a>
+    <!-- <a href="{{ sparkqlData }}">{{ sparkqlData }}</a> -->
+    <!-- <div class="row" *ngFor="let element in sparqlData"> -->
+      <app-response-card content="element" category="lastRequestCategory"></app-response-card>
+    <!-- </div> -->
   </div>
 
   <div class="sparql-request-container">
-    <div style="white-space:pre-wrap">
-      <p>{{ sparkqlQuery }}</p>
-    </div>
+    <mat-card class="form-container-card">
+      <mat-card-header>
+        <mat-card-title>Requête SPARQL</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="sparql-request">
+          <p>{{ sparkqlQuery }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <router-outlet></router-outlet>
