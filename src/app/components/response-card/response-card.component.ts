@@ -10,7 +10,7 @@ import { ResponseCardDto } from 'src/app/utilities/ResponseCardDto';
 export class ResponseCardComponent implements OnInit {
 
   @Input()
-  content:any = null
+  content:ResponseCardDto = {}
 
   @Input()
   category:string = ""
@@ -29,11 +29,20 @@ export class ResponseCardComponent implements OnInit {
     link:"",
   }
 
-  isExample:boolean = true;
+  isExample:boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+    this.cardContent.name = this.content.name;
+    this.cardContent.link = this.content.link;
+    this.cardContent.image = this.content.image;
+    this.cardContent.description = this.content.description;
+
+    console.log("content in response card", JSON.stringify(this.content) );
+    
+    console.log("card content ", this.cardContent);
+    
   }
 
 
