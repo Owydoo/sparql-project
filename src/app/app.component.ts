@@ -17,15 +17,16 @@ import { ResponseCardDto } from './utilities/ResponseCardDto';
 export class AppComponent {
   title = 'sparql-project';
   sparkqlData: string = '';
-  dataToDisplay: ResponseCardDto[] = [];
+  dataToDisplay?: ResponseCardDto[] = undefined;
   sparkqlQuery: string = '';
+  isLoading:boolean = false;
 
   //This is the category of the last request that has been made
   lastRequestCategory: string = '';
 
   form = this.fb.group({
     category: ['', Validators.required],
-    artistName: ['Eric Clapton'],
+    artistName: [''],
     artistGenre: [''],
     artistInstrument: [''],
     artistLabel: [''],
@@ -53,14 +54,17 @@ export class AppComponent {
 
   doRequest = (paramsQuery: Params) => {
     console.log('hello');
+    this.isLoading = true;
 
     // Generate query string from from params
     const queryString = generateQuery(paramsQuery);
     this.sparkqlQuery = queryString;
 
     // Fetch data from wikidata
-    fetchQuery(queryString).then((data: any) => {
+    fetchQuery(queryString)
+    .then((data: any) => {
       this.manageData(data);
+      this.isLoading = false;
     });
   };
 
@@ -82,6 +86,9 @@ export class AppComponent {
   };
 
   onSubmit = () => {
+
+    this.dataToDisplay = undefined;
+
     var formValue: FormDto = this.form.value;
     console.log('on submit : ', formValue);
 

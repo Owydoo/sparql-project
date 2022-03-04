@@ -25,7 +25,7 @@
               <span>Morceau</span>
             </label>
           </div>
-          <div class="row pt-3" *ngIf="form.value.category == 'Artist'">
+          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Artist'">
             <mat-form-field>
               <input
                 matInput=""
@@ -62,10 +62,10 @@
               />
             </mat-form-field>
           </div>
-          <div class="row pt-3" *ngIf="form.value.category == 'Artist'">
+          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Artist'">
             <label>
               <input type="radio" value="Dead" formControlName="artistStatus" />
-              <span>Décédé</span>
+              <span>Décédé(s)</span>
             </label>
             <label>
               <input
@@ -84,7 +84,7 @@
               <span>Ne pas prendre en compte</span>
             </label>
           </div>
-          <div class="row pt-3" *ngIf="form.value.category == 'Album'">
+          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Album'">
             <mat-form-field>
               <input
                 matInput=""
@@ -122,7 +122,7 @@
             </mat-form-field>
           </div>
 
-          <div class="row pt-3" *ngIf="form.value.category == 'Track'">
+          <div class="input-fields row pt-3" *ngIf="form.value.category == 'Track'">
             <mat-form-field>
               <input
                 matInput=""
@@ -162,6 +162,10 @@
 
   <div class="response-container">
     <!-- <a href="{{ sparkqlData }}">{{ sparkqlData }}</a> -->
+    <!-- <div class="row" *ngIf="dataToDisplay?.length == 0">Pas de résultat trouvé</div> -->
+    <mat-card class="form-container-card" *ngIf="dataToDisplay?.length == 0">Pas de résultat trouvé</mat-card>
+
+    <div class="row spinner" *ngIf="isLoading"><mat-spinner></mat-spinner></div>
     <div class="row" *ngFor="let item of dataToDisplay">
       <app-response-card
         [content]="item"

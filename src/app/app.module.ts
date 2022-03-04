@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { ResponseCardComponent } from './components/response-card/response-card.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ResponseCardComponent } from './components/response-card/response-card.
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

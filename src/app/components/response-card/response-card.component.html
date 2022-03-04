@@ -5,7 +5,7 @@
   <img matCardImage src="{{exampleContent.image}}" />
   <mat-card-content> {{exampleContent.description}}</mat-card-content>
   <mat-card-actions align="start">
-    <a mat-button color="primary" href="{{exampleContent.link}}"a >Vers la page WikiData</a>
+    <a mat-button color="primary" href="{{exampleContent.link}}">Vers la page WikiData</a>
   </mat-card-actions>
 </mat-card>
 
@@ -17,6 +17,6 @@
   <img *ngIf="content.image == undefined" matCardImage src="./../../../assets/placeholder.png" />
   <mat-card-content> {{content.description}}</mat-card-content>
   <mat-card-actions align="start">
-    <a mat-button color="primary" href="{{content.link}}"a >Vers la page WikiData</a>
+    <a mat-raised-button color="primary" href="{{content.link}}"a >Vers la page WikiData</a>
   </mat-card-actions>
 </mat-card>

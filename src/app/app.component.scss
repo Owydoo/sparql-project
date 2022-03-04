@@ -33,6 +33,7 @@ h6 {
   background-color: rgb(234, 234, 234);
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .category-radio-container{
@@ -62,4 +63,17 @@ padding-bottom: 15px;
   white-space:pre-wrap;
   font-family: 'Courier New', Courier, monospace;
   padding-top: 15px;
+}
+
+.input-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50%;
+  justify-content: center;
 }
