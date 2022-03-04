@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
+## avant de pouvoir lancer :
+`npm install -g @angular/cli` pour avoir le cient angular permettant de lancer le projet
+`npm install` dans le dossier sparql-project pour avoir toutes les dépendances
+`ng serve` pour lancer le projet
+ensuite, ouvrir un navigateur à l'adresse localhost:4200
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
