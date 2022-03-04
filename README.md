@@ -4,9 +4,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## avant de pouvoir lancer :
 `npm install -g @angular/cli` pour avoir le cient angular permettant de lancer le projet
+
 `npm install` dans le dossier sparql-project pour avoir toutes les dépendances
-`ng serve` pour lancer le projet
-ensuite, ouvrir un navigateur à l'adresse localhost:4200
+
+`ng serve` pour lancer le projet.
+Ensuite, ouvrir un navigateur à l'adresse localhost:4200
+
+![Screenshot - SparQL Project](https://user-images.githubusercontent.com/36131543/156748518-ebf07086-7879-4fa8-b9e9-5417b8e0e6ff.jpg)
+
 
 ## Development server
 
